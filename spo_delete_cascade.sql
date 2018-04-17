@@ -6,7 +6,8 @@ CREATE OR REPLACE PROCEDURE SPO_DELETE_CASCADE
 v_nome_pk VARCHAR(100);
 v_tabela_dependente VARCHAR(100);
 v_tabela_ok VARCHAR(100);
-CURSOR c_dependencias IS SELECT table_name FROM user_constraints WHERE constraint_type = 'R' AND r_constraint_name = v_nome_pk AND table_name NOT IN UPPER(v_tabela); 
+CURSOR c_dependencias IS SELECT table_name FROM user_constraints WHERE constraint_type = 'R' AND r_constraint_name = v_nome_pk 
+AND table_name NOT IN UPPER(v_tabela); 
 CURSOR c_dependencias_ok IS SELECT nome_tabela FROM tabelas_dependencias_ok;
 BEGIN
    INSERT INTO tabelas_dependencias_ok VALUES(v_tabela);
